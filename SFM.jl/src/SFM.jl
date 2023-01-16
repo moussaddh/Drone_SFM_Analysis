@@ -2,12 +2,15 @@ module SFM
 
 import Meshes
 import LinearAlgebra
-import PlyIO
+import PlyIO, CSV # For reading the .ply and .xyz files
 import Statistics
 
 include("IO.jl")
-include("mesh_pointcoud_distance.jl")
+include("mesh_pointcloud_distance.jl")
+include("statistics.jl")
 
-export loadply
-export mesh_pointcoud_distance
+export load_ply, load_points
+export mesh_pointcloud_distance
+export RMSE
+
 end

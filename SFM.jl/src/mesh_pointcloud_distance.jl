@@ -15,10 +15,10 @@ using SFM
 tree_mesh = loadply("tree.ply")
 point_cloud = loadply("point_cloud.ply")
 
-distances = mesh_pointcoud_distance(tree_mesh, point_cloud)
+distances = mesh_pointcloud_distance(tree_mesh, point_cloud)
 ```
 """
-function mesh_pointcoud_distance(tree_mesh, point_cloud, k=10)
+function mesh_pointcloud_distance(tree_mesh, point_cloud, k=10)
     pc = Meshes.Collection(point_cloud)
     S = Meshes.KNearestSearch(pc, k)
 
