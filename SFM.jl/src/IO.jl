@@ -1,14 +1,15 @@
-function compute_distance(tree_mesh, point_cloud, k=10)
-    pc = Collection(point_cloud)
-    S = KNearestSearch(pc, k)
+"""
+    loadply(fname)
 
-    mean_distances = zeros(length(tree_mesh))
-    for (i, tri) in enumerate(tree_mesh)
-        tri_centroid = centroid(tri)
-        n = search(tri_centroid, S)
+Load a mesh from a .ply file as a `SimpleMesh` from `Meshes.jl`.
+"""
+function loadply(file)
+    ply = PlyIO.load_ply(file)
+    x = ply["vertex"]["x"]
+    y = ply["vertex"]["y"]
+    z = ply["vertex"]["z"]
+    points = Meshes.Point3.(x, y, z)
+    connec = [Meshes.connect(Tuple(ind .+ 1)) for ind in ply["face"]["vertex_indices"]]
 
-        mean_distances[i] = mean(norm.(tri_centroid .- point_cloud[n]))
-    end
-
-    return mean_distances
+    return Meshes.SimpleMesh(points, connec)
 end
