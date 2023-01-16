@@ -1,19 +1,16 @@
-module SFM_
+module SFM
 
-begin
-    using Meshes
-    using LinearAlgebra
-    using MeshViz
-    using PlyIO: load_ply
-end
+import Meshes
+import LinearAlgebra
+import MeshViz
+import PlyIO
 
 """
 1. function to load SFM point clouds and compute a mesh points
 
 """
-
 function loadply(fname)
-    ply = load_ply(fname)
+    ply = PlyIO.load_ply(fname)
     x = ply["vertex"]["x"]
     y = ply["vertex"]["y"]
     z = ply["vertex"]["z"]
