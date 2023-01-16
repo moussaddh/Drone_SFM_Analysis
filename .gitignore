@@ -1,4 +1,4 @@
 
-1-data/*.ply
-
 Manifest.toml
+/1-data/*.ply
+
